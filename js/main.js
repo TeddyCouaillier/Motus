@@ -1,5 +1,11 @@
 var tab_words = ['injurieux','divulgation','protection','perruque','essentiel','plantation','mitrailleur','seigneur','gymnastique','glandulaire','optimum','stupefaction','ennemi','rechauffer','geometrie','altercation','ordinateur','tableau','mysterieux','sanguinaire','interminable','legerete','orientation','berserker','partager','funeraille','recipient','programme','autoroute','balancer','constitution','degouter','culturel','braquage','tristement','confusion',
 'excitation','federal','capsule','fragment','gigantesque','babillage','raquette','occident','androgyne','adhesif','munition','sauvage','deformer','decapiter','graveleux','obstacle','langage','scatophile','annihiler','magazine','crepuscule','paradoxe','repasser','surpasser','marginal','corrompu'];
+var audio_good = new Audio("js/good.mp3");
+var audio_bad = new Audio('js/bad.mp3');
+var audio_presque = new Audio('js/presque.mp3');
+var audio_win = new Audio("js/win.mp3");
+var audio_lose = new Audio("js/lose.mp3");
+
 
 var i_alea = parseInt(Math.random()*tab_words.length);
 console.log(tab_words[i_alea]);
@@ -33,11 +39,12 @@ function addInput(taille){
     if(cpt<=8){
         $('#motus').append(addWord(taille,cpt));
     } else {
+        audio_lose.play();
         $('#motus').append('<img src="./img/lose.gif" class="mx-auto img-fluid my-3" id="gif_lose"></img>');
         $('#motus').append('<span class="text-center text-white h3">Résultat : '+tab_words[i_alea]+'</span>');
 
     }
-    },(taille+1)*700);
+    },(taille+1)*300);
 }
 
 // WORDS SEARCH
@@ -48,11 +55,24 @@ var words_st = words_s.split('');
 function changeColor(val, color,i){
     setTimeout(function(){
         $(val).addClass(color);
-    },(i+1)*700);
+    },(i+1)*300);
+    setTimeout(function(){
+        
+        if(color === "good"){
+            audio_good.play();
+        }
+        else if(color === "presque"){
+            audio_presque.play();
+        } 
+        else{
+            audio_bad.play();
+        }
+    },(i+1)*300);
 }
 
 // VERIF DU MOT SAISI
 function onClick(nb){
+    
     $('#enter').remove();
     // Tableau temporaire pour gerer les lettres mal placées
     words_tmp = words_s.split('');
@@ -65,13 +85,11 @@ function onClick(nb){
         letters[i] = (letters_select[i].value).toLowerCase();
         words += letters[i];
     }   
-
     // Verification du mot saisi
     for(i = 0 ; i < words_st.length ; i++){
         if(letters[i] === words_st[i]){
             
             changeColor(letters_select[i],"good",i);
-            
             var tmp = 0;
             while(letters[i]!==words_tmp[tmp]){
                 tmp++;
@@ -84,8 +102,9 @@ function onClick(nb){
         if(letters[i] !== words_st[i]){
             for(var j = 0 ; j < words_tmp.length ; j++){
                 if(letters[i]===words_tmp[j]){
-                    changeColor(letters_select[i],"bad",i);
-                }
+                    changeColor(letters_select[i],"presque",i);
+                } 
+
             }
         }
     }
@@ -94,9 +113,10 @@ function onClick(nb){
     } else {
         // Attends la fin de l'animation pour afficher l'alerte
         setTimeout(function(){
+            audio_win.play();
             $('#motus').append('<img src="./img/win.gif" class="mx-auto img-fluid my-3" id="gif_win"></img>');
             $('#motus').append('<a class="mx-auto" href="index.php"><button class="btn btn-warning">Restart</button></a>')
-        },(taille+1)*700);
+        },(taille+1)*300);
     }
 
 }

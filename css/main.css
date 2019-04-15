@@ -69,7 +69,7 @@ input{
 }
 
 
-.bad{
+.presque{
     background: rgb(252,234,187) !important;
     background: -moz-linear-gradient(-45deg, rgba(252,234,187,1) 1%, rgba(252,205,77,1) 22%, rgba(248,181,0,1) 100%, rgba(251,223,147,1) 100%, rgba(248,181,0,1) 100%, rgba(248,181,0,1) 100%) !important;
     background: -webkit-linear-gradient(-45deg, rgba(252,234,187,1) 1%,rgba(252,205,77,1) 22%,rgba(248,181,0,1) 100%,rgba(251,223,147,1) 100%,rgba(248,181,0,1) 100%,rgba(248,181,0,1) 100%) !important;
