@@ -1,6 +1,10 @@
 body{
     padding: 0;
     margin: 0;
+    background: -moz-linear-gradient(left, rgba(220,20,20,0.9) 0%, rgba(100,10,10,1) 100%);
+    background: -webkit-linear-gradient(left, rgba(220,20,20,0.9) 0%,rgba(100,10,10,1) 100%);
+    background: linear-gradient(to right, rgba(220,20,20,0.9) 0%,rgba(100,10,10,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6dc1414', endColorstr='#640a0a',GradientType=1 );
 }
 
 .row{
@@ -36,13 +40,24 @@ input{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ec5e2', endColorstr='#083293',GradientType=0 );
 }
 
+
 .words #enter{
-    background: white !important;
-    color: black;
-    border-radius: 50%;
-    font-size: 30px;    
+    background: rgba(220,20,20,0.9) !important;
+    position: absolute;
+    top: 50px;
+    color: white;
+    height: auto !important;
+    width: auto !important;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 22px;    
     font-weight: 500;
     cursor: pointer;
+}
+
+.words #enter:hover{
+    color: rgba(220,20,20,0.9);
+    background: white !important;
 }
 
 .good{
@@ -63,7 +78,41 @@ input{
     border-radius: 50%;
 }
 
+#start{
+    border-radius: 50%;
+    padding: 15px 12px;
+    font-weight: bold;
+    background: rgb(252,243,161);
+    background: -moz-linear-gradient(left, rgba(252,243,161,1) 0%, rgba(255,255,50,1) 100%);
+    background: -webkit-linear-gradient(left, rgba(252,243,161,1) 0%,rgba(255,255,50,1) 100%);
+    background: linear-gradient(to right, rgba(252,243,161,1) 0%,rgba(255,255,50,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcf3a1', endColorstr='#ffff32',GradientType=1 );
+}
+#start:hover{
+    cursor: pointer;
+    border: 5px solid rgba(255,255,50,.6);
+}
+
 .container img{
-    height: 200px;
-    
+    width: 60%;
+}
+
+#gif_win,#gif_lose{
+    width: 50%;
+}
+
+button a:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button a{
+    color: black;
+    text-decoration: none;
+}
+
+@media screen and (max-width:767px){
+    #gif_win,#gif_lose{
+        width: 90%;
+    }
 }
